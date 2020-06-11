@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1041462539337",
+    "firebase_url": "https://prime-flix-43a6e.firebaseio.com",
+    "project_id": "prime-flix-43a6e",
+    "storage_bucket": "prime-flix-43a6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041462539337:android:bb464e44f625737d1b7b98",
+        "android_client_info": {
+          "package_name": "com.piyushjaiswal12.primeflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiDTeBcXhULO-TeMYA0Rom5O3wggfDydU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

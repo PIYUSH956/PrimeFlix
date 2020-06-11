@@ -1,0 +1,19 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:elevation="10dp"
+    android:soundEffectsEnabled="true"
+    app:cardBackgroundColor="#000000"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    android:layout_height="250dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:soundEffectsEnabled="true"
+        android:src="@android:color/black"
+        android:id="@+id/image"/>
+</androidx.cardview.widget.CardView>

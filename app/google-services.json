@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "1041462539337",
+    "firebase_url": "https://prime-flix-43a6e.firebaseio.com",
+    "project_id": "prime-flix-43a6e",
+    "storage_bucket": "prime-flix-43a6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041462539337:android:0736ad001eb928bd1b7b98",
+        "android_client_info": {
+          "package_name": "com.piyushjaiswal12.primeflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiDTeBcXhULO-TeMYA0Rom5O3wggfDydU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041462539337:android:bb464e44f625737d1b7b98",
+        "android_client_info": {
+          "package_name": "com.piyushjaiswal121.primeflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041462539337-5u2l3ga3tqcqjcb9oklvro5920jcje1h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.piyushjaiswal121.primeflix",
+            "certificate_hash": "ca5a55f481bc8a621715f376eb8bcbadb98d3463"
+          }
+        },
+        {
+          "client_id": "1041462539337-e5t94s54buja5uqnf3c6nf9ak58qth2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.piyushjaiswal121.primeflix",
+            "certificate_hash": "9441c3ee328fbf77c2be79f5fbbb33143955394f"
+          }
+        },
+        {
+          "client_id": "1041462539337-3aqh5ctv18tb7d624he6klavnt43fp31.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.piyushjaiswal121.primeflix",
+            "certificate_hash": "b9eb4fe1bbff60db251cda5e08b542ee546de98d"
+          }
+        },
+        {
+          "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiDTeBcXhULO-TeMYA0Rom5O3wggfDydU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041462539337-h8710shte1u3loqrerj37pb8t846lf8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

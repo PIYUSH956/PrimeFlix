@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.piyushjaiswal12.primeflix">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.PlayerActivity" android:screenOrientation="landscape"></activity>
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.ProfileActivity" />
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main4Activity" />
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.PhoneActivity" />
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main3Activity" />
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main2Activity" />
+        <activity android:name="com.piyushjaiswal12.primeflix.activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
