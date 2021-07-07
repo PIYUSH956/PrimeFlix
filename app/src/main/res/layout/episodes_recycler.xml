@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:elevation="10dp"
     android:soundEffectsEnabled="true"
-    app:cardBackgroundColor="#000000"
+    app:cardBackgroundColor="@color/background"
     android:padding="5dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/background"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="0dp"
@@ -27,12 +27,12 @@
         android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"
         android:id="@+id/episode_name"
         android:text="Episode 1"
         android:textStyle="bold|italic"
-        android:textColor="@android:color/white"
+        android:textColor="@color/textColor"
         android:layout_margin="4dp"/>
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

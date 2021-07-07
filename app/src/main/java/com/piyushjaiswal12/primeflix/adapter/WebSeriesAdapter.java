@@ -1,6 +1,8 @@
 package com.piyushjaiswal12.primeflix.adapter;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +47,8 @@ public class WebSeriesAdapter extends RecyclerView.Adapter<WebSeriesAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Glide.with(context).load("https://geekstocode.com/web_series_images/"+list.get(position).getThumb()).into(holder.imageView);
+        holder.name.setText(list.get(position).getName());
+        holder.episodes.setText(list.get(position).getTotaltime()+" Episodes");
         Log.d("thumbcheck","https://geekstocode.com/web_series_images/"+list.get(position).getThumb());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -101,10 +106,13 @@ public class WebSeriesAdapter extends RecyclerView.Adapter<WebSeriesAdapter.MyVi
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+        TextView name,episodes;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
+            name= itemView.findViewById(R.id.name);
+            episodes = itemView.findViewById(R.id.episodes);
         }
     }
 
@@ -113,6 +121,8 @@ public class WebSeriesAdapter extends RecyclerView.Adapter<WebSeriesAdapter.MyVi
     {
         void onClick(int position);
     }
+
+
 
 
 }

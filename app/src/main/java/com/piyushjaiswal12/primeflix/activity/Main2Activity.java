@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -39,30 +38,24 @@ public class Main2Activity extends AppCompatActivity {
                 .commit();
         login = findViewById(R.id.login);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login.setTextSize(45);
-                signup.setTextSize(25);
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
-               fragmentTransaction.replace(R.id.frameLayout, new LogIn()).commit();
-            }
+        login.setOnClickListener(v -> {
+            login.setTextSize(45);
+            signup.setTextSize(25);
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+           fragmentTransaction.replace(R.id.frameLayout, new LogIn()).commit();
         });
 
         signup = findViewById(R.id.signup);
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signup.setTextSize(45);
-                login.setTextSize(25);
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.exit_to_left, R.anim.exit_from_right);
+        signup.setOnClickListener(v -> {
+            signup.setTextSize(45);
+            login.setTextSize(25);
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.exit_to_left, R.anim.exit_from_right);
 
-                fragmentTransaction.replace(R.id.frameLayout,new SignUp()).commit();
-                Log.d("checking","SignUp");
-            }
+            fragmentTransaction.replace(R.id.frameLayout,new SignUp()).commit();
+            Log.d("checking","SignUp");
         });
 
 

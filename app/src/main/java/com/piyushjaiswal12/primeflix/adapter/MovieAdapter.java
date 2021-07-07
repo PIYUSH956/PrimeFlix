@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         Glide.with(context).load("https://geekstocode.com/movies_images/"+list.get(position).getThumb()).into(holder.imageView);
+
         Log.d("thumbcheck","https://geekstocode.com/movies_images/"+list.get(position).getThumb());
+       holder.name.setText(list.get(position).getName());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,10 +104,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-
+        TextView name,episodes;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.name);
         }
     }
 

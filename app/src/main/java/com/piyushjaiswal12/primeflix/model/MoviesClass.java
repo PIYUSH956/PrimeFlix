@@ -11,14 +11,26 @@ public class MoviesClass implements Serializable {
     private Date date;
     private String category;
     private String thumb;
+    private int time;
 
+    public String getCategory() {
+        return category;
+    }
 
-    public MoviesClass(String name,  int totaltime, Date date, String category, String thumb) {
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public MoviesClass(String name, int totaltime, Date date, String category, String thumb) {
         this.name = name;
-
+        this.time =totaltime;
         this.date = date;
         this.category = category;
         this.thumb = thumb;
+    }
+
+    public int getTime() {
+        return time;
     }
 
     public String getName() {

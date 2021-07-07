@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/black"
+    android:background="@color/background"
     tools:context=".activity.Main3Activity">
 
 
@@ -20,16 +20,16 @@
             app:menu="@menu/menu"
             app:title="Prime Flix"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:titleTextColor="@android:color/holo_red_dark"
+            app:titleTextColor="@color/textColor"
             />
 
 
     </LinearLayout>
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        app:tabTextColor="@android:color/holo_red_dark"
+        app:tabTextColor="@color/textColor"
         android:id="@+id/tab"
-        app:tabIndicatorColor="@android:color/holo_red_dark"
+        app:tabIndicatorColor="@color/textColor"
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabItem

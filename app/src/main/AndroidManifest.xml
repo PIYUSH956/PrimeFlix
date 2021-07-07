@@ -3,7 +3,9 @@
     package="com.piyushjaiswal12.primeflix">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +15,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.PlayerActivity" android:screenOrientation="landscape"></activity>
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.ProfileActivity" />
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main4Activity" />
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.PhoneActivity" />
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main3Activity" />
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.Main2Activity" />
-        <activity android:name="com.piyushjaiswal12.primeflix.activity.MainActivity">
+        <activity android:name=".activity.EditProfile"></activity>
+        <activity android:name=".activity.WatchList" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2685099075999149~8952373391" />
+
+        <activity
+            android:name=".activity.PlayerActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.Main4Activity" />
+        <activity android:name=".activity.PhoneActivity" />
+        <activity android:name=".activity.Main3Activity" />
+        <activity
+            android:name=".activity.Main2Activity"
+            android:screenOrientation="nosensor" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

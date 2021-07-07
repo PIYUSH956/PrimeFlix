@@ -5,23 +5,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/black"
+    android:background="@color/background"
     android:layout_height="match_parent"
     tools:context=".activity.PhoneActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/code"
+            android:maxLength="2"
+            android:textColor="@color/textColor"
+            android:text="91"
+            android:backgroundTint="@color/textColor"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:textStyle="italic"
+
+            />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/phone"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@color/textColor"
         android:hint="Phone Number"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:layout_margin="20dp"
-        android:textColorHint="@android:color/holo_red_dark"
+        android:maxLength="10"
+        android:backgroundTint="@color/textColor"
+        android:layout_margin="10dp"
+        android:inputType="number"
+        android:textColorHint="@color/textColor"
         android:textStyle="italic"
 
         />
+    </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,9 +59,10 @@
         android:id="@+id/number"
         android:textColor="@android:color/holo_red_dark"
         android:hint="Number"
-        android:backgroundTint="@android:color/holo_red_dark"
+        android:inputType="number"
+        android:backgroundTint="@color/textColor"
         android:layout_margin="20dp"
-        android:textColorHint="@android:color/holo_red_dark"
+        android:textColorHint="@color/textColor"
         android:textStyle="italic"
 
         />

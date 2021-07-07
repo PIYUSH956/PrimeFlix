@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/black"
+    android:background="@color/background"
     tools:context=".Fragment.SignUp">
 
     <LinearLayout
@@ -15,11 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/textColor"
             android:hint="Email"
-            android:backgroundTint="@android:color/holo_red_dark"
+            android:backgroundTint="@color/textColor"
             android:layout_margin="20dp"
-            android:textColorHint="@android:color/holo_red_dark"
+            android:textColorHint="@color/textColor"
             android:textStyle="italic"
 
             />
@@ -28,11 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/textColor"
             android:hint="Password"
-            android:backgroundTint="@android:color/holo_red_dark"
+            android:backgroundTint="@color/textColor"
             android:layout_margin="20dp"
-            android:textColorHint="@android:color/holo_red_dark"
+            android:textColorHint="@color/textColor"
             android:textStyle="italic"
 
             />

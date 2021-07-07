@@ -6,17 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class PhoneActivity extends AppCompatActivity {
 
 
-    EditText number,otp;
+    EditText number,otp,cc;
     Button login,verifyotp;
     private FirebaseAuth mAuth;
     String mVerificationId;
@@ -43,22 +41,14 @@ public class PhoneActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         number = findViewById(R.id.phone);
         otp = findViewById(R.id.number);
+        cc =findViewById(R.id.code);
         login = findViewById(R.id.login);
         verifyotp = findViewById(R.id.verify);
         verifyotp.setClickable(false);
         progressBar = findViewById(R.id.progress_phone);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logIn();
-            }
-        });
-        verifyotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyOtp();
-            }
-        });
+        login.setOnClickListener(
+                v -> logIn());
+        verifyotp.setOnClickListener(v -> verifyOtp());
     }
 
     private void verifyOtp() {
@@ -68,42 +58,48 @@ public class PhoneActivity extends AppCompatActivity {
         }
         else {
             progressBar.setVisibility(View.VISIBLE);
-            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-            signInWithPhoneAuthCredential(credential);
+            try {
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+                signInWithPhoneAuthCredential(credential);
 
+            }
+            catch (Exception e)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(), "Verification Code is wrong, try again", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();
+            }
 
         }}
     private void signInWithPhoneAuthCredential(final PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = task.getResult().getUser();
-                            otp.setText(credential.getSmsCode());
-                            Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
-                            // ...
-                            Intent intent;
-                            intent = new Intent(PhoneActivity.this, Main3Activity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                            progressBar.setVisibility(View.GONE);
-                        } else {
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        FirebaseUser user = Objects.requireNonNull(task.getResult()).getUser();
+                        otp.setText(credential.getSmsCode());
+                        Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+                        // ...
+                        Intent intent;
+                        intent = new Intent(PhoneActivity.this, Main3Activity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                        progressBar.setVisibility(View.GONE);
+                    } else {
 
-                            Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(getApplicationContext(),"Invalid Code",Toast.LENGTH_SHORT).show();
-                            }
-                            progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(getApplicationContext(),"Invalid Code",Toast.LENGTH_SHORT).show();
                         }
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }
 
     private void logIn() {
-        String  phoneNumber = "+91"+number.getText().toString();
+        String cd = cc.getText().toString().trim();
+        String  phoneNumber = "+"+cd+number.getText().toString();
         if(phoneNumber.length()!=13 )
         {
             Toast.makeText(getApplicationContext(),"Wrong Number",Toast.LENGTH_SHORT).show();
@@ -153,12 +149,7 @@ public class PhoneActivity extends AppCompatActivity {
             mResendToken = token;
             Toast.makeText(getApplicationContext(),"Wait for a minute",Toast.LENGTH_SHORT).show();
             login.setClickable(false);
-             new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    login.setClickable(true);
-                }
-            },60000);progressBar.setVisibility(View.GONE);
+             new Handler().postDelayed(() -> login.setClickable(true),60000);progressBar.setVisibility(View.GONE);
 
             // ...
         }

@@ -8,21 +8,21 @@
     android:orderInCategory="1"
     android:icon="@drawable/ic_search_black_24dp"
     app:actionViewClass="android.widget.SearchView"
-
     app:showAsAction="ifRoom"
     />
+
+
     <item
-        android:title="Profile"
-        android:id="@+id/profile"
-        android:icon="@drawable/profile"
+        android:title="Rate Us"
+        android:id="@+id/filter"
+        android:icon="@drawable/ic_star_half_black_24dp"
         android:orderInCategory="1"
         app:showAsAction="ifRoom"
         />
 
     <item
-        android:title="Filter"
-        android:id="@+id/filter"
-        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Log Out"
+        android:id="@+id/logout"
         android:orderInCategory="1"
         app:showAsAction="ifRoom"
         />

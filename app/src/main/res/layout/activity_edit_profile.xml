@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activity.EditProfile">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:id="@+id/name"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:hint="Piyush Jaiswal"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:id="@+id/bio"
+                android:textStyle="bold"
+                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:hint="Bio"/>
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/textColor"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/occupation"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:hint="Occupation"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:id="@+id/adress"
+            android:textSize="20dp"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:hint="Address"/>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:dropDownSelector="@color/textColor"
+            android:spinnerMode="dropdown"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/education"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:hint="Graduate/UnderGraduate"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:id="@+id/age"
+            android:textSize="20dp"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:hint="Age"/>
+        <Spinner
+            android:id="@+id/male_female"
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:layout_height="wrap_content"
+            android:dropDownSelector="@color/textColor"
+            android:spinnerMode="dropdown"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_margin="15dp"
+            android:id="@+id/number"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            />
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progress_bar"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="20dp"
+            android:onClick="updateProfile"
+            android:text="  Update My Profile  "
+            android:id="@+id/login"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded"
+          />
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -23,10 +23,10 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.piyushjaiswal12.primeflix.R;
 import com.piyushjaiswal12.primeflix.activity.Main4Activity;
 import com.piyushjaiswal12.primeflix.adapter.MovieAdapter;
@@ -76,7 +76,11 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
         RecyclerView recyclerView = v.findViewById(R.id.recycler);
         recyclerView2 = v.findViewById(R.id.recycler_crime);
         progressBar = v.findViewById(R.id.progressbar_movies);
-            movieAdapter_trending = new MovieTrendingAdapter(getContext(),list,  this);
+        AdView mAdView = v.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        movieAdapter_trending = new MovieTrendingAdapter(getContext(),list,  this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         RecyclerView.LayoutManager layoutManager2 = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -124,13 +128,26 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                movieAdapter.getFilter().filter(query);
+                try {
+                    movieAdapter.getFilter().filter(query);
+
+                }
+                catch (NullPointerException e)
+                {
+                    //Loading
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                movieAdapter.getFilter().filter(newText);
+                try {
+                    movieAdapter.getFilter().filter(newText);
+                }
+                catch (NullPointerException e)
+                {
+                    //Loading
+                }
                 return true;
             }
         });
@@ -147,10 +164,10 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
                 Log.d("Inside Search","Inside Search");
 
                 return true;
-            case R.id.profile:
+          //  case R.id.profile:
 
 
-                return false;
+            //    return false;
             default:
                 break;
         }
@@ -162,7 +179,7 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
     public void onClick(int position) {
         Intent intent = new Intent(getActivity(),Main4Activity.class);
         intent.putExtra("NameOfMovies",list2.get(position).getName());
-        Log.d("click listining",list2.get(position).getName());
+        intent.putExtra("Type",list2.get(position).getCategory());
         startActivity(intent);
         Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.sample2,0);
     }
@@ -172,65 +189,59 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
         RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("userId", response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+                response -> {
+                    Log.d("userId", response);
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String success = jsonObject.getString("success");
 
-                            JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                            if (success.equals("1")) {
+                        if (success.equals("1")) {
 
-                                Log.d("cccc", String.valueOf(jsonArray.length()));
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                            Log.d("cccc", String.valueOf(jsonArray.length()));
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
-                                    MoviesClass moviesClass;
-                                    JSONObject object = jsonArray.getJSONObject(i);
+                                MoviesClass moviesClass;
+                                JSONObject object = jsonArray.getJSONObject(i);
 
-                                    String name = object.getString("Name");
-                                    int integer = Integer.parseInt(object.getString("Total_Time"));
-                                    //   String date = object.getString("Date");
-                                    Date date1 = Date.valueOf("2000-01-01");
-                                    String thumb = object.getString("Thumb");
-                                    String category = object.getString("Category");
-
-                                    moviesClass = new MoviesClass(name, integer, date1, category, thumb);
-                                    list2.add(moviesClass);
-                                }
+                                String name = object.getString("Name");
+                                int integer = Integer.parseInt(object.getString("Total_Time"));
+                                //   String date = object.getString("Date");
+                                Date date1 = Date.valueOf("2000-01-01");
+                                String thumb = object.getString("Thumb");
+                                String category = object.getString("Category");
 
 
+                                moviesClass = new MoviesClass(name, integer, date1, category, thumb);
+                                list2.add(moviesClass);
                             }
-                            if(t)
-                            {
-                                movieAdapter_trending.notifyDataSetChanged();
-                            }
-                            else {
 
 
-                                movieAdapter = new MovieAdapter(getContext(), list2, movies);
-                                recyclerView2.setAdapter(movieAdapter);
-                                recyclerView2.scheduleLayoutAnimation();
-                                progressBar.setVisibility(View.GONE);
-
-                            }
-                            Log.d("length", String.valueOf(list2.size()));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                        if(t)
+                        {
+                            movieAdapter_trending.notifyDataSetChanged();
+                        }
+                        else {
 
+
+                            movieAdapter = new MovieAdapter(getContext(), list2, movies);
+                            recyclerView2.setAdapter(movieAdapter);
+                            recyclerView2.scheduleLayoutAnimation();
+                            progressBar.setVisibility(View.GONE);
+
+                        }
+                        Log.d("length", String.valueOf(list2.size()));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
+                }, error -> {
 
-            }
-        });
+                    progressBar.setVisibility(View.GONE);
+
+                });
 
         queue.add(stringRequest);
     }
@@ -239,7 +250,7 @@ public class Movies extends Fragment implements  MovieAdapter.onClickListener,Mo
     public void onClick1(int position) {
         Intent intent = new Intent(getActivity(),Main4Activity.class);
         intent.putExtra("NameOfMovies",list.get(position).getName());
-        Log.d("clicktrending listining",list.get(position).getName());
+        intent.putExtra("Type",list.get(position).getCategory());
         startActivity(intent);
         Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.sample2,0);
     }

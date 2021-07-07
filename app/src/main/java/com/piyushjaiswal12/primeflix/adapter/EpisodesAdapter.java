@@ -1,6 +1,8 @@
 package com.piyushjaiswal12.primeflix.adapter;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.piyushjaiswal12.primeflix.R;
 import com.piyushjaiswal12.primeflix.model.EpisodesClass;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class EpisodesAdapter extends RecyclerView.Adapter<EpisodesAdapter.MyViewHolder> {
@@ -51,6 +54,7 @@ public class EpisodesAdapter extends RecyclerView.Adapter<EpisodesAdapter.MyView
             }
         });
 
+
     }
 
 
@@ -62,12 +66,13 @@ public class EpisodesAdapter extends RecyclerView.Adapter<EpisodesAdapter.MyView
     static class MyViewHolder extends RecyclerView.ViewHolder
     {
 
-        TextView textView;
+        TextView textView,time;
         ImageView imageView;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.epi_image);
             textView = itemView.findViewById(R.id.episode_name);
+            time = itemView.findViewById(R.id.time);
         }
     }
 
@@ -80,4 +85,5 @@ public class EpisodesAdapter extends RecyclerView.Adapter<EpisodesAdapter.MyView
     {
         void onClicker(int position);
     }
+
 }

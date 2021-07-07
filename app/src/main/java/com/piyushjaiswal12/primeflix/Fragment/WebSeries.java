@@ -17,12 +17,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.piyushjaiswal12.primeflix.InternetConnection;
 import com.piyushjaiswal12.primeflix.R;
 import com.piyushjaiswal12.primeflix.activity.Main4Activity;
 import com.piyushjaiswal12.primeflix.adapter.WebSeriesAdapter;
@@ -43,7 +46,7 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
     public WebSeries() {
         // Required empty public constructor
     }
-
+    private LottieAnimationView lottieAnimationView;
     private TrendingAdapter trendingAdapter;
     private List<WebSeriesClass> list = new ArrayList<>();
 
@@ -52,6 +55,7 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
     private List<WebSeriesClass> list2 = new ArrayList<>();
     private ProgressBar progressBar;
     final private WebSeries activity = this;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +69,10 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
         View v = inflater.inflate(R.layout.fragment_web_series, container, false);
         RecyclerView recyclerView = v.findViewById(R.id.recycler);
         recyclerView2 = v.findViewById(R.id.recycler_crime);
+        AdView mAdView = v.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        lottieAnimationView = v.findViewById(R.id.nointernet);
 
         trendingAdapter = new TrendingAdapter(getContext(),list,this);
 
@@ -77,12 +85,7 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
         recyclerView2.setLayoutManager(layoutManager2);
         progressBar = v.findViewById(R.id.progress_bar);
 
-        list2.clear();
-        String url = "https://geekstocode.com/testinggg/WebSeries.php";
-        Fetching(url,list2,false);
-        list.clear();
-        String url2 = "https://geekstocode.com/testinggg/TrendingWebSeries.php";
-        Fetching(url2,list,true);
+
         return v;
     }
 
@@ -90,7 +93,7 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
     public void onStart() {
         super.onStart();
 
-        }
+    }
 
 
     @Override
@@ -99,6 +102,25 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(InternetConnection.isNetworkConnected(Objects.requireNonNull(getContext())))
+        {
+            String url = "https://geekstocode.com/testinggg/WebSeries.php";
+            Fetching(url, list2, false);
+            String url2 = "https://geekstocode.com/testinggg/TrendingWebSeries.php";
+            Fetching(url2, list, true);
+            lottieAnimationView.setVisibility(View.GONE);
+        }
+        else
+        {
+            lottieAnimationView.setVisibility(View.VISIBLE);
+        }
+
+
+    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -108,13 +130,25 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                webSeriesAdapter.getFilter().filter(query);
+                try {
+                    webSeriesAdapter.getFilter().filter(query);
+                }
+                catch (NullPointerException e)
+                {
+                    //Loading
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                webSeriesAdapter.getFilter().filter(newText);
+                try {
+                    webSeriesAdapter.getFilter().filter(newText);
+                }
+                catch (NullPointerException e)
+                {
+                    //Loading
+                }
                 return true;
             }
         });
@@ -131,10 +165,10 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
                 Log.d("Inside Search","Inside Search");
 
                 return true;
-            case R.id.profile:
+        //    case R.id.profile:
 
 
-                return false;
+          //      return false;
             default:
                 break;
         }
@@ -146,6 +180,7 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
     public void onClick(int position) {
         Intent intent = new Intent(getActivity(),Main4Activity.class);
         intent.putExtra("NameOfWebSeries",list2.get(position).getName());
+        intent.putExtra("Type",list2.get(position).getCategory());
         startActivity(intent);
         Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.sample2,0);
     }
@@ -155,74 +190,74 @@ public class WebSeries extends Fragment implements TrendingAdapter.onClickListen
         RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("userId", response);
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-                                String success = jsonObject.getString("success");
+                    response -> {
+                        Log.d("userId", response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
 
-                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                            JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                                if (success.equals("1")) {
+                            if (success.equals("1")) {
 
-                                    Log.d("cccc", String.valueOf(jsonArray.length()));
-                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                Log.d("cccc", String.valueOf(jsonArray.length()));
+                                for (int i = 0; i < jsonArray.length(); i++) {
 
-                                        WebSeriesClass webSeriesClass;
-                                        JSONObject object = jsonArray.getJSONObject(i);
+                                    WebSeriesClass webSeriesClass;
+                                    JSONObject object = jsonArray.getJSONObject(i);
 
-                                        String name = object.getString("Name");
-                                        //   String date = object.getString("Date");
-                                        Date date1 = Date.valueOf("2000-01-01");
-                                        String thumb = object.getString("Thumb");
-                                        String category = object.getString("Category");
-
-                                        webSeriesClass = new WebSeriesClass(name,  1, date1, category, thumb);
-                                        list2.add(webSeriesClass);
-                                    }
-
-
+                                    String name = object.getString("Name");
+                                    //   String date = object.getString("Date");
+                                    Date date1 = Date.valueOf("2000-01-01");
+                                    String thumb = object.getString("Thumb");
+                                    String category = object.getString("Category");
+                                    int totaltime = object.getInt("Total Time");
+                                    webSeriesClass = new WebSeriesClass(name,  totaltime, date1, category, thumb);
+                                    list2.add(webSeriesClass);
                                 }
-                                if(t)
-                                {
-                                    trendingAdapter.notifyDataSetChanged();
-                                }
-                                else {
 
 
-                                    webSeriesAdapter = new WebSeriesAdapter(getContext(), list2, activity);
-                                    recyclerView2.setAdapter(webSeriesAdapter);
-                                    recyclerView2.scheduleLayoutAnimation();
-                                    progressBar.setVisibility(View.GONE);
-
-                                }
-                                Log.d("length", String.valueOf(list2.size()));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                            if(t)
+                            {
+                                trendingAdapter.notifyDataSetChanged();
+                            }
+                            else {
+
+
+                                webSeriesAdapter = new WebSeriesAdapter(getContext(), list2, activity);
+                                recyclerView2.setAdapter(webSeriesAdapter);
+                                recyclerView2.scheduleLayoutAnimation();
+                                progressBar.setVisibility(View.GONE);
+
+                            }
+                            Log.d("length", String.valueOf(list2.size()));
+                            lottieAnimationView.setVisibility(View.GONE);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }, error -> {
+
+                        try {
+                            Toast.makeText(getContext(), "Try To Restart App", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
 
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-
-                }
-            });
+                        catch (Exception e)
+                        {
+    //
+                        }
+                    });
 
             queue.add(stringRequest);
         }
 
-
     @Override
     public void onClick1(int position) {
         Intent intent = new Intent(getActivity(),Main4Activity.class);
-        Log.d("clickng trending",list.get(position).getName());
         intent.putExtra("NameOfWebSeries",list.get(position).getName());
+        intent.putExtra("Type",list.get(position).getCategory());
         startActivity(intent);
         Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.sample2,0);
     }

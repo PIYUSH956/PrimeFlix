@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".Fragment.Movies">
 
@@ -18,7 +18,7 @@
             android:text="Trending Now"
             android:drawableEnd="@drawable/ic_arrow_forward_black_24dp"
             android:layout_gravity="center"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:textColor="@color/textColor"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,12 +30,23 @@
             android:text="Others"
             android:drawableEnd="@drawable/ic_arrow_downward_black_24dp"
             android:layout_gravity="end"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:textColor="@color/textColor"/>
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
             android:id="@+id/progressbar_movies"/>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2685099075999149/2866117827">
+        </com.google.android.gms.ads.AdView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
