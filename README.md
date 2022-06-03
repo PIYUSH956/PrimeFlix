@@ -21,7 +21,7 @@ faster recovery.
 
 ### 2. User Can scroll through Movies and Web Series
 
-![alt text](https://firebasestorage.googleapis.com/v0/b/drug-recovery-5c4fe.appspot.com/o/Screenshot%20from%202022-05-27%2015-33-58.png?alt=media&token=2f907b4e-0e31-4fcb-885d-1e3ef26ce781](https://media-exp2.licdn.com/dms/image/C5622AQFnxL0iL4cGcg/feedshare-shrink_1280/0/1600881934272?e=1657152000&v=beta&t=VGlbakdm0uMGgmMbHs4BkLGi45ZVBxHHAOzhAHzNeOQ)
+![alt text](https://media-exp2.licdn.com/dms/image/C5622AQFnxL0iL4cGcg/feedshare-shrink_1280/0/1600881934272?e=1657152000&v=beta&t=VGlbakdm0uMGgmMbHs4BkLGi45ZVBxHHAOzhAHzNeOQ)
 
 ### 3.Report Generating and Saving as PDF
 
