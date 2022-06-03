@@ -23,14 +23,11 @@ faster recovery.
 
 ![alt text](https://media-exp2.licdn.com/dms/image/C5622AQFnxL0iL4cGcg/feedshare-shrink_1280/0/1600881934272?e=1657152000&v=beta&t=VGlbakdm0uMGgmMbHs4BkLGi45ZVBxHHAOzhAHzNeOQ)
 
-### 3.Report Generating and Saving as PDF
+### 3.Access All Episode of Web Series
 
 
-![alt text](https://firebasestorage.googleapis.com/v0/b/drug-recovery-5c4fe.appspot.com/o/Screenshot%20from%202022-05-27%2015-34-24.png?alt=media&token=a240bca8-2231-47a2-b8f5-3db908e0586f)
+![alt text](https://media-exp2.licdn.com/dms/image/C5622AQFd7nIkY8V3lw/feedshare-shrink_1280/0/1600881932946?e=1657152000&v=beta&t=DLFZA5taelnVlngrAMSpCHR21rPkqQPLfhf3Y3f8XKM)
 
+### 4. Play your favourite Movie or web series
 
-![alt text](https://firebasestorage.googleapis.com/v0/b/drug-recovery-5c4fe.appspot.com/o/Screenshot%20from%202022-05-27%2015-35-27.png?alt=media&token=a5f96be9-35c5-4db1-a99c-2e7ec433db07)
-
-### 4. User can cancel the Slot according to need
-
-![alt text](https://firebasestorage.googleapis.com/v0/b/drug-recovery-5c4fe.appspot.com/o/Screenshot%20from%202022-06-03%2016-08-58.png?alt=media&token=25463687-e201-47a0-b9a4-592656f4d2b0)
+![alt text](https://media-exp2.licdn.com/dms/image/C5622AQHoDax_K37kJA/feedshare-shrink_2048_1536/0/1600881932232?e=1657152000&v=beta&t=L2-K8uYmEBt2HYp2BbtxxqGK_mVbUBNKfXZ4lYw77Aw)
