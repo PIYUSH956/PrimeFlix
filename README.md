@@ -3,16 +3,9 @@
 # Prime Flix
 # Another OTT Platform
 
-## Idea Behind The Project
+## Tech Stack Used In  The Project
 
-To control drug addiction we can develop recovery
-site for drug addiction. We can plan to execute this project
-idea by creating an website like Recovery Path, where users can
-create their profiles, access strategies to overcome their
-cravings and interact with other people facing similar issues.
-Daily interactions in the recovery community can provide life-
-saving support and even increase motivation, resulting in a
-faster recovery.
+### Java, XML, Android Studio, PHP, MY SQL, Firebase
 
 
 
